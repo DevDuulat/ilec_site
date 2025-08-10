@@ -62,9 +62,7 @@ class ServiceResource extends Resource
                         Forms\Components\TextInput::make('full_price')
                             ->required()
                             ->numeric(),
-                        Forms\Components\FileUpload::make('image')
-                            ->image()
-                            ->directory('services'),
+                       
                         Forms\Components\Toggle::make('active')
                             ->required(),
                     ]),
@@ -90,7 +88,6 @@ class ServiceResource extends Resource
                     ->numeric()
                     ->sortable()
                     ->money('USD'),
-                Tables\Columns\ImageColumn::make('image'),
                 Tables\Columns\IconColumn::make('active')
                     ->boolean(),
                 Tables\Columns\TextColumn::make('created_at')

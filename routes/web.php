@@ -23,7 +23,7 @@ Route::middleware(['web'])->group(function () {
 
 Route::get('/work-in-germany', [ProgramController::class, 'work'])->name('programs.work');
 Route::get('/study-in-germany', [ProgramController::class, 'study'])->name('programs.study');
-
+Route::get('/programs/{program}', [ProgramController::class, 'show'])->name('programs.show');
 Route::get('/courses', [CourseController::class, 'index'])->name('courses');
 Route::get('/visa-support', [HomeController::class, 'indexVisa'])->name('visa.support');
 

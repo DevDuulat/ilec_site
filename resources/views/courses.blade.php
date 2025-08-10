@@ -1,36 +1,75 @@
 @extends('layouts.app')
 
 @section('content')
+<div class="relative bg-[#202124] text-white overflow-hidden">
+  <div class="max-w-7xl mx-auto px-6 py-16 md:py-24">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+      <!-- Текстовая колонка -->
+      <div class="relative z-10">
+        <h1 class="text-4xl md:text-5xl font-bold mb-6 leading-tight">
+          {{ __('courses.title_main') }}
+        </h1>
+        <p class="text-lg md:text-xl text-gray-300 mb-8 max-w-lg">
+          {{ __('courses.desc_main') }}
+        </p>
+
+        <div class="flex flex-col sm:flex-row gap-4">
+          <a href="#courses_block"
+            class="bg-[#800F12] hover:bg-[#5C0B0D] text-white px-8 py-3 rounded-lg text-lg font-medium transition-colors duration-300 transform hover:scale-105"
+            id="viewCoursesBtn">
+            {{ __('courses.btn_view_all') }}
+          </a>
+
+        </div>
+
+        <div class="mt-10 flex flex-wrap gap-6">
+          <div class="flex items-center">
+            <svg class="w-8 h-8 text-[#800F12]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+            </svg>
+            <span class="ml-2">{{ __('courses.stat_1') }}</span>
+          </div>
+          <div class="flex items-center">
+            <svg class="w-8 h-8 text-[#800F12]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+            </svg>
+            <span class="ml-2">{{ __('courses.stat_2') }}</span>
+          </div>
+          <div class="flex items-center">
+            <svg class="w-8 h-8 text-[#800F12]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+            </svg>
+            <span class="ml-2">{{ __('courses.stat_3') }}</span>
+          </div>
+        </div>
+      </div>
+      <!-- Колонка с изображением с маской -->
+      <div class="relative">
+        <div class="absolute inset-0 bg-gradient-to-r from-[#800F12] to-transparent opacity-30 rounded-2xl -rotate-6">
+        </div>
+        <div
+          class="relative overflow-hidden rounded-2xl transform rotate-1 hover:rotate-0 transition-transform duration-500">
+          <img src="{{ asset('images/ilec-photo-16.jpg') }}" alt="{{ __('courses.title_main') }}"
+            class="w-[500px] h-full object-cover" />
+        </div>
+        <div class="absolute -bottom-6 -left-6 w-32 h-32 rounded-full bg-[#800F12] opacity-20 blur-xl"></div>
+        <div class="absolute -top-6 -right-6 w-24 h-24 rounded-full bg-[#800F12] opacity-20 blur-xl"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="absolute top-0 left-0 w-full h-full overflow-hidden">
+    <div class="absolute top-1/4 -right-20 w-64 h-64 rounded-full bg-[#800F12] opacity-10 blur-3xl"></div>
+    <div class="absolute bottom-0 -left-40 w-80 h-80 rounded-full bg-[#800F12] opacity-10 blur-3xl"></div>
+  </div>
+</div>
+
 <section class="bg-gray-50 py-12">
   <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
 
-    <!-- Фильтры -->
-    {{-- <div class="flex flex-wrap gap-3 justify-center mb-12">
-      <button
-        class="px-5 py-2.5 bg-[#800F12] text-white rounded-full font-medium shadow-sm hover:shadow-md transition-all">
-        Все курсы
-      </button>
-      <button
-        class="px-5 py-2.5 bg-white text-gray-700 rounded-full font-medium border border-gray-200 hover:border-[#800F12] hover:text-[#800F12] transition-all">
-        Языковые
-      </button>
-      <button
-        class="px-5 py-2.5 bg-white text-gray-700 rounded-full font-medium border border-gray-200 hover:border-[#800F12] hover:text-[#800F12] transition-all">
-        Подготовка к экзаменам
-      </button>
-      <button
-        class="px-5 py-2.5 bg-white text-gray-700 rounded-full font-medium border border-gray-200 hover:border-[#800F12] hover:text-[#800F12] transition-all">
-        Онлайн-курсы
-      </button>
-      <button
-        class="px-5 py-2.5 bg-white text-gray-700 rounded-full font-medium border border-gray-200 hover:border-[#800F12] hover:text-[#800F12] transition-all">
-        Для детей
-      </button>
-    </div> --}}
 
     <!-- Список курсов -->
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-      @foreach($courses as $course)
+    <div id="courses_block" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"> @foreach($courses as $course)
       <div
         class="bg-white rounded-xl overflow-hidden border border-gray-100 hover:shadow-lg transition-all duration-300 hover:-translate-y-1">
         <div class="relative">
@@ -75,7 +114,7 @@
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                   d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
               </svg>
-              {{ $course->duration }}
+              {{ $course->duration }} {{ __('messages.min') }}
             </div>
             <div class="flex items-center">
               <svg class="w-4 h-4 mr-1 text-[#800F12]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -160,7 +199,24 @@
   </div>
 </div>
 
+<script>
+  document.getElementById('viewCoursesBtn').addEventListener('click', function(e) {
+  e.preventDefault();
+  const target = document.getElementById('courses_block');
+  
+  // Плавный скролл с offset (отступом сверху)
+  window.scrollTo({
+    top: target.offsetTop - 160, // 20px отступ сверху
+    behavior: 'smooth'
+  });
+  
 
+  
+  setTimeout(() => {
+    target.style.boxShadow = 'none';
+  }, 1500);
+});
+</script>
 <script>
   document.addEventListener('DOMContentLoaded', () => {
     const modal = document.getElementById('modal');

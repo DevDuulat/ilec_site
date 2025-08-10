@@ -1,8 +1,15 @@
 @extends('layouts.app')
 
 @section('content')
-
-<section class="bg-gray-100 py-16">
+<x-page-hero title="{{ __('hero.home.title') }}" description="{{ __('hero.home.description') }}"
+  image="images/ilec-photo-14.jpg" imageAlt="{{ __('hero.home.image_alt') }}" :stats="[
+        ['icon' => 'heroicon-s-check', 'text' => __('messages.90_percent_success')],
+        ['icon' => 'heroicon-s-clock', 'text' => __('messages.5_years_experience')],
+    ]" :primaryButton="[
+        'text' => __('messages.services_page.all_services'),
+        'url' => '#contact-form'
+    ]" :secondaryButton="null" />
+<section class="bg-gray-100 py-16" id="contact-form">
   <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
     <h2 class="text-3xl font-bold text-gray-900 mb-8">
       {{ __('messages.services_page.all_services') }}
@@ -31,14 +38,10 @@
           </p>
         </div>
         <div class="flex space-x-3">
-          <button
-            class="bg-[#800F12] hover:bg-[#5C0B0D] text-white px-4 py-2 rounded-lg font-medium text-sm flex-1 transition duration-300">
+          <a href="{{ route('contacts') }}"
+            class="inline-block bg-[#800F12] hover:bg-[#5C0B0D] text-white px-4 py-2 rounded-lg font-medium text-sm flex-1 transition duration-300 text-center">
             {{ __('messages.services_page.apply_btn') }}
-          </button>
-          <button
-            class="border border-[#800F12] text-[#800F12] hover:bg-gray-50 px-4 py-2 rounded-lg font-medium text-sm flex-1 transition duration-300">
-            {{ __('messages.services_page.details_btn') }}
-          </button>
+          </a>
         </div>
       </div>
       @endforeach

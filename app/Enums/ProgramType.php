@@ -10,8 +10,8 @@ enum ProgramType: string
     public function label(): string
     {
         return match($this) {
-            self::STUDY => 'Учёба в Германии',
-            self::WORK => 'Работа в Германии',
+            self::STUDY => __('programs.program_types.study'),
+            self::WORK => __('programs.program_types.work'),
         };
     }
 

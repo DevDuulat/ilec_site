@@ -2,7 +2,7 @@
   return [
       'home' => 'Home',
       'courses' => 'Courses',
-      'sinse' => 'sinse',
+      'since' => 'since',
       'germany_jobs' => 'Jobs in Germany',
       'germany_study' => 'Studying in Germany',
       'reviews' => 'Reviews',
@@ -107,9 +107,9 @@
         'description' => 'International educational consulting company',
         'image_alt' => 'Our ILEC team',
         'stats' => [
-            'success' => '95% success rate',
-            'experience' => '10+ years of experience',
-            'partners' => '50+ partner universities'
+            'success' => '90% success rate',
+            'experience' => '5+ years of experience',
+            'partners' => '7+ partner universities'
         ],
         'mission_title' => 'Our Mission',
         'mission_text' => 'We help students achieve educational goals through professional guidance',
@@ -119,32 +119,56 @@
             'quality' => 'Service quality',
             'innovation' => 'Innovative approach'
         ],
-          'timeline_title' => 'Company Timeline',
-    'timeline' => [
-        '2019' => [
-            'title' => 'ILEC Founded',
-            'description' => 'Founded in Osh by Munarbek Zhakypov and Gulzina Abdyjapar kyzy as a licensed educational agency.',
-        ],
-        '2022' => [
-            'title' => 'Branch Opened in Bishkek',
-            'description' => 'A second office opened in the capital of Kyrgyzstan — Bishkek.',
-        ],
-        '2023' => [
-            'title' => 'Team and Program Expansion',
-            'description' => 'The team grew to over 30 qualified professionals. New employment and support programs in Germany were launched.',
-        ],
-        '2024' => [
-            'title' => 'Strengthening International Partnerships',
-            'description' => 'New agreements signed with universities and employers in Europe. On-site support for participants in Germany expanded.',
-        ],
-    ],
   ],
+  'timeline_title' => 'Company History',
+'timeline' => [
+    '2019' => [
+        'title' => 'Foundation of ILEC',
+        'description' => 'Founded in the city of Osh by Munarbek Zhakyupov and Gulzina Abdyzhapar kyzy as a licensed educational agency.',
+    ],
+    '2022' => [
+        'title' => 'Opening of the Bishkek Branch',
+        'description' => 'The second office started operating in the capital of Kyrgyzstan — Bishkek.',
+    ],
+    '2023' => [
+        'title' => 'Team and Direction Expansion',
+        'description' => 'Staff exceeded 30 qualified employees. New programs for employment and support in Germany launched.',
+    ],
+    '2024' => [
+        'title' => 'Strengthening International Partnerships',
+        'description' => 'New contracts signed with universities and employers in Europe. Expanded support for participants in Germany.',
+    ],
+],
+
     'enroll' => 'Enroll',
     'popular' => 'Popular',
+    'min' => 'minutes',
     'group_size' => 'Group of :count people',
     'currency_month' => 'KGS/mo',
     'video_reviews' => [
         'title' => 'Video Reviews',
         'description' => 'Our clients share their impressions',
+    ],
+     'section_title' => 'Our Advantages',
+    'columns' => [
+        'services' => [
+            'title' => 'Services',
+            'description' => 'Explore our education, work, and visa support programs in Germany.',
+            'button' => 'Learn More About Services',
+        ],
+        'about' => [
+            'title' => 'About Us',
+            'description' => 'Learn more about our team and mission that helps students achieve their goals.',
+            'button' => 'Learn More',
+        ],
+        'partnership' => [
+            'title' => 'Partnership',
+            'description' => 'Opportunities for educational institutions and companies interested in cooperating with us.',
+            'button' => 'Contact Us',
+        ],
+    ],
+      'partners' => [
+        'title' => 'Our Partners',
+        'subtitle' => 'We cooperate with leading educational institutions worldwide',
     ],
     ];

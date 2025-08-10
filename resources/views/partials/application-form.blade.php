@@ -8,23 +8,22 @@
           <!-- Текстовая часть -->
           <div class="md:w-1/2">
             <h2 class="text-2xl font-bold text-gray-900 mb-3">
-              Нужна консультация?
+              {{ __('request_form.title') }}
             </h2>
             <p class="text-gray-600 mb-4">
-              Оставьте заявку и наш специалист свяжется с вами в течение 24
-              часов
+              {{ __('request_form.description') }}
             </p>
             <div class="flex items-center text-sm text-gray-500 mb-2">
               <svg class="w-4 h-4 mr-2 text-[#800F12]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
               </svg>
-              Бесплатная консультация
+              {{ __('request_form.features.free_consultation') }}
             </div>
             <div class="flex items-center text-sm text-gray-500">
               <svg class="w-4 h-4 mr-2 text-[#800F12]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
               </svg>
-              Помощь в подборе вуза
+              {{ __('request_form.features.university_help') }}
             </div>
           </div>
 
@@ -34,12 +33,12 @@
               @csrf
 
               <div>
-                <input type="text" name="name" placeholder="Ваше имя*" required
+                <input type="text" name="name" placeholder="{{ __('request_form.fields.name') }}" required
                   class="w-full px-4 py-2.5 rounded-lg border border-gray-300 focus:ring-2 focus:ring-[#800F12] focus:border-[#800F12] text-sm" />
               </div>
 
               <div>
-                <input type="email" name="email" placeholder="Email*" required
+                <input type="email" name="email" placeholder="{{ __('request_form.fields.email') }}" required
                   class="w-full px-4 py-2.5 rounded-lg border border-gray-300 focus:ring-2 focus:ring-[#800F12] focus:border-[#800F12] text-sm" />
               </div>
 
@@ -57,19 +56,20 @@
                     </svg>
                   </div>
                 </div>
-                <input type="tel" name="phone_number" placeholder="(999) 123-45-67" required
+                <input type="tel" name="phone_number" placeholder="{{ __('request_form.fields.phone_number') }}"
+                  required
                   class="flex-1 px-4 py-2.5 rounded-lg border border-gray-300 focus:ring-2 focus:ring-[#800F12] text-sm"
                   x-data="{}" x-mask="(999) 999-99-99" />
               </div>
 
               <button type="submit"
                 class="w-full bg-[#800F12] hover:bg-[#5C0B0D] text-white py-2.5 px-4 rounded-lg font-medium text-sm transition duration-300">
-                Отправить заявку
+                {{ __('request_form.button') }}
               </button>
 
               <p class="text-xs text-gray-500 text-center">
-                Нажимая кнопку, вы соглашаетесь с
-                <a href="#" class="text-[#800F12] hover:underline">политикой конфиденциальности</a>
+                {{ __('request_form.privacy') }}
+                <a href="#" class="text-[#800F12] hover:underline">{{ __('request_form.privacy_link') }}</a>
               </p>
             </form>
 

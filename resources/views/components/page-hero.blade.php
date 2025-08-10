@@ -3,15 +3,12 @@
 'description' => '',
 'image' => '',
 'imageAlt' => '',
-'video' => '', // Новый параметр: путь к видео
+'video' => '',
 'primaryButton' => [
 'text' => __('hero.view_all_courses'),
 'url' => route('courses'),
 ],
-'secondaryButton' => [
-'text' => __('hero.all_services'),
-'url' => route('services'),
-],
+'secondaryButton' => null,
 'stats' => [],
 'bgColor' => 'bg-[#202124]',
 'textColor' => 'text-white',

@@ -29,16 +29,76 @@ class ProgramController extends Controller
         ]);
     }
     
-    public function work()
+    public function work(Request $request)
     {
-        $programs = Program::where('type', 'work')->get();
-        return view('programs-work', compact('programs'));
+        $query = Program::where('type', 'work');
+        $minSalary = (int) $query->min('salary_min') ?: 10;
+        $maxSalary = (int) $query->max('salary_max') ?: 50;
+
+        $salary = 10; // дефолтное значение
+
+        if ($request->filled('salary')) {
+            $salary = (int) $request->input('salary');
+            $query->where('salary_max', '>=', $salary);
+        }
+
+        if ($request->filled('type')) {
+            $query->where('category', $request->input('type'));
+        }
+
+        if ($request->filled('professions')) {
+            $query->whereIn('category', $request->input('professions'));
+        }
+
+        if ($request->filled('language_level')) {
+            $levels = $request->input('language_level');
+            if (is_array($levels)) {
+                $query->whereIn('language_level', $levels);
+            } else {
+                $query->where('language_level', $levels);
+            }
+        }
+
+        $programs = $query->get();
+
+        return view('programs-work', compact('programs', 'minSalary', 'maxSalary', 'salary'));
     }
 
-    public function study()
+
+
+    public function study(Request $request)
     {
-        $programs = Program::where('type', 'study')->get(); // Пример фильтра
-        return view('programs-study', compact('programs'));
+        $query = Program::where('type', 'study');
+        $minSalary = (int) $query->min('salary_min') ?: 10;
+        $maxSalary = (int) $query->max('salary_max') ?: 50;
+
+        $salary = 10; 
+
+        if ($request->filled('salary')) {
+            $salary = (int) $request->input('salary');
+            $query->where('salary_max', '>=', $salary);
+        }
+
+        if ($request->filled('type')) {
+            $query->where('category', $request->input('type'));
+        }
+
+        if ($request->filled('professions')) {
+            $query->whereIn('category', $request->input('professions'));
+        }
+
+        if ($request->filled('language_level')) {
+            $levels = $request->input('language_level');
+            if (is_array($levels)) {
+                $query->whereIn('language_level', $levels);
+            } else {
+                $query->where('language_level', $levels);
+            }
+        }
+
+        $programs = $query->get();
+
+        return view('programs-study', compact('programs', 'minSalary', 'maxSalary', 'salary'));
     }
 
     /**
@@ -62,7 +122,7 @@ class ProgramController extends Controller
      */
     public function show(Program $program)
     {
-        //
+        return view('programs-work-show', compact('program'));
     }
 
     /**

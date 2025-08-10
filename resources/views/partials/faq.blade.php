@@ -14,7 +14,7 @@
           <h3 class="text-lg font-medium text-gray-900 mb-4">
             {{ __('messages.faq_other') }}
           </h3>
-          <a href="#"
+          <a href="{{ route('contacts') }}"
             class="mt-4 w-full inline-flex items-center justify-center gap-2 px-6 py-3 bg-gray-900 text-white rounded-xl font-medium hover:bg-gray-800 transition">
             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24"
               stroke="currentColor">

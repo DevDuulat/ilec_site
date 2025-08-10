@@ -18,7 +18,7 @@ $currentLocale = app()->getLocale();
             <span class="text-white">ILEC</span>
           </a>
 
-          <span class="ml-2 rounded bg-[#5C0B0D] px-2 py-1 text-xs text-white md:inline-block">{{ __('messages.sinse')
+          <span class="ml-2 rounded bg-[#5C0B0D] px-2 py-1 text-xs text-white md:inline-block">{{ __('messages.since')
             }} 2019</span>
         </div>
 
@@ -30,9 +30,19 @@ $currentLocale = app()->getLocale();
           <a href="{{ route('contacts') }}" class="nav-link text-gray-200 hover:text-white">{{ __('messages.contacts')
             }}</a>
 
-          <!-- Выпадающий список языка -->
+          @php
+          $languages = [
+          'en' => ['label' => 'English', 'flag' => 'flags/gb-eng.svg'],
+          'ru' => ['label' => 'Русский', 'flag' => 'flags/ru.svg'],
+          'de' => ['label' => 'Deutsch', 'flag' => 'flags/de.svg']
+          ];
+          $currentLang = $languages[$currentLocale];
+          @endphp
+
           <div class="dropdown relative">
-            <button class="flex items-center space-x-1 text-gray-200 hover:text-white">
+            <button class="flex items-center space-x-2 text-gray-200 hover:text-white">
+              <img src="{{ asset('images/' . $currentLang['flag']) }}" alt="{{ $currentLang['label'] }} flag"
+                class="w-5 h-5">
               <span>{{ strtoupper($currentLocale) }}</span>
               <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24"
                 stroke="currentColor">
@@ -41,17 +51,21 @@ $currentLocale = app()->getLocale();
             </button>
 
             <div
-              class="dropdown-menu absolute right-0 mt-2 w-32 origin-top-right rounded-md bg-white py-1 shadow-lg z-50">
+              class="dropdown-menu absolute right-0 mt-2 w-40 origin-top-right rounded-md bg-white py-1 shadow-lg z-50">
               <div class="language-switcher">
-                @foreach(['en' => 'English', 'ru' => 'Русский', 'de' => 'Deutsch'] as $lang => $label)
+                @foreach($languages as $lang => $data)
                 <a href="{{ route('lang.switch', $lang) }}"
-                  class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 {{ App::getLocale() === $lang ? 'font-semibold bg-gray-50' : '' }}">
-                  {{ $label }}
+                  class="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 {{ App::getLocale() === $lang ? 'font-semibold bg-gray-50' : '' }}">
+                  <img src="{{ asset('images/' . $data['flag']) }}" alt="{{ $data['label'] }} flag"
+                    class="w-5 h-5 mr-2">
+                  {{ $data['label'] }}
                 </a>
                 @endforeach
               </div>
             </div>
           </div>
+
+
 
           <!-- Кнопка заявки - контрастная -->
           <button data-toggle="modal"
@@ -136,21 +150,3 @@ $currentLocale = app()->getLocale();
     </div>
   </div>
 </header>
-
-<script>
-  // Мобильное меню
-    document.getElementById('mobile-menu-button').addEventListener('click', function() {
-        const menu = document.getElementById('mobile-menu');
-        menu.classList.toggle('hidden');
-    });
-    
-    // Закрытие меню при клике вне его
-    document.addEventListener('click', function(event) {
-        const menu = document.getElementById('mobile-menu');
-        const button = document.getElementById('mobile-menu-button');
-        
-        if (!menu.contains(event.target) && !button.contains(event.target)) {
-            menu.classList.add('hidden');
-        }
-    });
-</script>

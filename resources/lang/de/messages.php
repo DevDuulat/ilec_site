@@ -2,7 +2,7 @@
 return [
     'home' => 'Startseite',
     'courses' => 'Kurse',
-    'sinse' => 'seit',
+    'since' => 'seit',
     'germany_jobs' => 'Arbeit in Deutschland',
     'germany_study' => 'Studieren in Deutschland',
     'reviews' => 'Bewertungen',
@@ -108,9 +108,9 @@ return [
         'description' => 'Internationales Bildungsberatungsunternehmen',
         'image_alt' => 'Unser ILEC Team',
         'stats' => [
-            'success' => '95% Erfolgsquote',
-            'experience' => '10+ Jahre Erfahrung',
-            'partners' => '50+ Partneruniversitäten'
+            'success' => '90% Erfolgsquote',
+            'experience' => '5+ Jahre Erfahrung',
+            'partners' => '7+ Partneruniversitäten'
         ],
         'mission_title' => 'Unsere Mission',
         'mission_text' => 'Wir helfen Studierenden, ihre Bildungsziele durch professionelle Begleitung zu erreichen',
@@ -121,32 +121,55 @@ return [
             'innovation' => 'Innovativer Ansatz'
         ]
         ],
-        'timeline_title' => 'Unternehmensgeschichte',
-    'timeline' => [
-        '2013' => [
-            'title' => 'Gründung von ILEC',
-            'description' => 'Beginn mit Beratung für die Zulassung in die USA und Kanada',
-        ],
-        '2015' => [
-            'title' => 'Erster erfolgreicher Student nach Europa',
-            'description' => 'Hilfe bei der Aufnahme an einer deutschen Universität mit Stipendium',
-        ],
-        '2018' => [
-            'title' => 'Expansion auf 20 Länder',
-            'description' => 'Programme in Asien und Ozeanien hinzugefügt',
-        ],
-        '2023' => [
-            'title' => '4000+ erfolgreiche Aufnahmen',
-            'description' => 'Marktführer im Bildungsbereich geworden',
-        ],
+    'timeline_title' => 'Unternehmensgeschichte',
+'timeline' => [
+    '2019' => [
+        'title' => 'Gründung von ILEC',
+        'description' => 'Gegründet in der Stadt Osh von Munarbek Zhakyupov und Gulzina Abdyzhapar kyzy als lizenziertes Bildungsbüro.',
     ],
+    '2022' => [
+        'title' => 'Eröffnung der Niederlassung in Bischkek',
+        'description' => 'Die zweite Niederlassung nahm ihren Betrieb in der Hauptstadt Kirgisistans – Bischkek – auf.',
+    ],
+    '2023' => [
+        'title' => 'Erweiterung des Teams und der Bereiche',
+        'description' => 'Der Personalstand überschritt 30 qualifizierte Mitarbeiter. Neue Programme für Beschäftigung und Betreuung in Deutschland wurden gestartet.',
+    ],
+    '2024' => [
+        'title' => 'Stärkung internationaler Partnerschaften',
+        'description' => 'Neue Verträge mit Universitäten und Arbeitgebern in Europa wurden geschlossen. Die Betreuung der Teilnehmer in Deutschland wurde ausgeweitet.',
+    ],
+],
+
    'enroll' => 'Anmelden',
     'popular' => 'Beliebt',
+    'min' => 'Minuten',
     'group_size' => 'Gruppe mit :count Personen',
     'currency_month' => 'Som/Monat',
     'video_reviews' => [
       'title' => 'Video-Bewertungen',
       'description' => 'Unsere Kunden teilen ihre Eindrücke',
     ],
-
+'section_title' => 'Unsere Vorteile',
+    'columns' => [
+        'services' => [
+            'title' => 'Dienstleistungen',
+            'description' => 'Erkunden Sie unsere Bildungs-, Arbeits- und Visumsunterstützungsprogramme in Deutschland.',
+            'button' => 'Mehr über Dienstleistungen',
+        ],
+        'about' => [
+            'title' => 'Über uns',
+            'description' => 'Erfahren Sie mehr über unser Team und unsere Mission, die Studenten beim Erreichen ihrer Ziele unterstützt.',
+            'button' => 'Mehr erfahren',
+        ],
+        'partnership' => [
+            'title' => 'Zusammenarbeit',
+            'description' => 'Möglichkeiten für Bildungseinrichtungen und Unternehmen, die mit uns zusammenarbeiten möchten.',
+            'button' => 'Kontaktieren Sie uns',
+        ],
+    ],
+      'partners' => [
+        'title' => 'Unsere Partner',
+        'subtitle' => 'Wir arbeiten mit führenden Bildungseinrichtungen weltweit zusammen',
+    ],
 ];

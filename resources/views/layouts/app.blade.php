@@ -20,6 +20,8 @@
   <x-footer />
   @include('components.application-modal')
   @stack('scripts')
+  <script src="{{ asset('js/mobile-menu.js') }}"></script>
+  <script src="{{ asset('js/accordion.js') }}"></script>
 </body>
 
 </html>
