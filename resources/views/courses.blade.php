@@ -19,7 +19,6 @@
             id="viewCoursesBtn">
             {{ __('courses.btn_view_all') }}
           </a>
-
         </div>
 
         <div class="mt-10 flex flex-wrap gap-6">
@@ -66,10 +65,9 @@
 
 <section class="bg-gray-50 py-12">
   <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-
-
     <!-- Список курсов -->
-    <div id="courses_block" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"> @foreach($courses as $course)
+    <div id="courses_block" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      @foreach($courses as $course)
       <div
         class="bg-white rounded-xl overflow-hidden border border-gray-100 hover:shadow-lg transition-all duration-300 hover:-translate-y-1">
         <div class="relative">
@@ -128,9 +126,8 @@
           <div class="flex justify-between items-center">
             <span class="text-xl font-bold text-[#800F12]">
               {{ number_format($course->price, 0, ',', ' ') }} {{ __('messages.currency_month') }}
-
             </span>
-            <button data-course="{{ $course->title }}"
+            <button data-course="{{ $course->title }}" data-course-id="{{ $course->id }}"
               class="open-modal-btn px-4 py-2 bg-[#800F12] hover:bg-[#5C0B0D] text-white rounded-lg text-sm font-medium transition-colors">
               {{ __('messages.enroll') }}
             </button>
@@ -139,14 +136,6 @@
       </div>
       @endforeach
     </div>
-
-    <!-- Кнопка показать всё -->
-    {{-- <div class="text-center mt-12">
-      <button
-        class="px-8 py-3 border-2 border-[#800F12] text-[#800F12] hover:bg-[#800F12] hover:text-white rounded-lg font-medium transition-all duration-300">
-        Показать все курсы
-      </button>
-    </div> --}}
   </div>
 </section>
 
@@ -160,7 +149,8 @@
     <form action="{{ route('request-forms.store') }}" method="POST" class="space-y-4">
       @csrf
       <input type="hidden" name="message" id="hiddenMessage" value="">
-      <input type="hidden" name="source" value="course_page">
+      <input type="hidden" name="source" id="sourceInput" value="course_page">
+      <input type="hidden" name="course_title" id="courseTitleInput" value="">
 
       <div>
         <label class="block text-sm font-medium">
@@ -201,35 +191,40 @@
 
 <script>
   document.getElementById('viewCoursesBtn').addEventListener('click', function(e) {
-  e.preventDefault();
-  const target = document.getElementById('courses_block');
-  
-  // Плавный скролл с offset (отступом сверху)
-  window.scrollTo({
-    top: target.offsetTop - 160, // 20px отступ сверху
-    behavior: 'smooth'
+    e.preventDefault();
+    const target = document.getElementById('courses_block');
+    
+    window.scrollTo({
+      top: target.offsetTop - 160,
+      behavior: 'smooth'
+    });
+    
+    setTimeout(() => {
+      target.style.boxShadow = 'none';
+    }, 1500);
   });
-  
-
-  
-  setTimeout(() => {
-    target.style.boxShadow = 'none';
-  }, 1500);
-});
 </script>
+
 <script>
   document.addEventListener('DOMContentLoaded', () => {
     const modal = document.getElementById('modal');
     const modalTitle = document.getElementById('modalTitle');
     const hiddenMessage = document.getElementById('hiddenMessage');
+    const sourceInput = document.getElementById('sourceInput');
+    const courseTitleInput = document.getElementById('courseTitleInput');
     const modalCloseBtn = document.getElementById('modalCloseBtn');
 
     // Открытие модалки
     document.querySelectorAll('.open-modal-btn').forEach(button => {
       button.addEventListener('click', () => {
         const courseTitle = button.getAttribute('data-course');
+        const courseId = button.getAttribute('data-course-id');
+        
         modalTitle.textContent = courseTitle;
-        hiddenMessage.value = courseTitle;
+        hiddenMessage.value = `Запрос на курс: ${courseTitle}`;
+        courseTitleInput.value = courseTitle;
+        sourceInput.value = `course_page:${courseId}`;
+        
         modal.classList.remove('hidden');
       });
     });

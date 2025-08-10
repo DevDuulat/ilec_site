@@ -18,6 +18,9 @@ class ProgramResource extends Resource
     protected static ?string $model = Program::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $modelLabel = 'Программы'; 
+    protected static ?string $pluralModelLabel = 'Программы'; 
+    protected static ?string $navigationLabel = 'Программы';
 
     public static function form(Form $form): Form
     {
@@ -68,7 +71,7 @@ class ProgramResource extends Resource
             Forms\Components\TextInput::make('duration')->label('Длительность'),
             Forms\Components\TextInput::make('salary_min')->numeric()->label('Зарплата от'),
             Forms\Components\TextInput::make('salary_max')->numeric()->label('Зарплата до'),
-            Forms\Components\TextInput::make('currency')->default('EUR')->required(),
+            Forms\Components\TextInput::make('currency')->default('EUR')->label('Валюта')->required(),
             Forms\Components\TextInput::make('min_age')->numeric()->label('Мин. возраст'),
             Forms\Components\TextInput::make('max_age')->numeric()->label('Макс. возраст'),
         ]);
@@ -88,9 +91,9 @@ class ProgramResource extends Resource
             Tables\Columns\TextColumn::make('language_level')->label('Язык')
                 ->formatStateUsing(fn($state) => LanguageLevel::tryFrom($state)?->label() ?? '-'),
 
-            Tables\Columns\TextColumn::make('salary_min')->label('Мин. €'),
-            Tables\Columns\TextColumn::make('salary_max')->label('Макс. €'),
-            Tables\Columns\TextColumn::make('currency'),
+            Tables\Columns\TextColumn::make('salary_min')->label('Мин.'),
+            Tables\Columns\TextColumn::make('salary_max')->label('Макс.'),
+            Tables\Columns\TextColumn::make('currency')->label('Валюта'),
         ])
         ->filters([
             Tables\Filters\SelectFilter::make('type')->options(ProgramType::options())->label('Тип'),

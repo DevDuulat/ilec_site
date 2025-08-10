@@ -17,6 +17,9 @@ class ReviewResource extends Resource
     protected static ?string $model = Review::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $modelLabel = 'Отзывы'; 
+    protected static ?string $pluralModelLabel = 'Отзывы'; 
+    protected static ?string $navigationLabel = 'Отзывы';
 
     public static function form(Form $form): Form
     {
@@ -27,6 +30,7 @@ class ReviewResource extends Resource
                 ->schema([
                     FileUpload::make('preview_image')
                         ->image()
+                        ->label('Превью обложки')
                         ->required()
                         ->columnSpan(1),
 
@@ -51,11 +55,8 @@ class ReviewResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('author')
-                    ->searchable(),
-                Tables\Columns\TextColumn::make('comment')
-                    ->searchable(),
-                Tables\Columns\ImageColumn::make('preview_image'),
+          
+                Tables\Columns\ImageColumn::make('preview_image')->label('Превью обложки'),
                 Tables\Columns\TextColumn::make('video_path')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('created_at')

@@ -9,7 +9,7 @@ class Course extends Model
     use HasTranslations;
 
     protected $fillable = [
-        'title', 'description', 'tags', 'duration', 'group_size', 'price', 'image', 'is_popular', 'category'
+        'title', 'description', 'tags', 'duration', 'group_size', 'price_per_month', 'image', 'is_popular', 'category'
     ];
 
     public $translatable = ['title', 'description', 'tags', 'category'];

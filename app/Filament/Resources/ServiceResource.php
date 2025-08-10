@@ -15,12 +15,15 @@ class ServiceResource extends Resource
     protected static ?string $model = Service::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $modelLabel = 'Услуги'; 
+    protected static ?string $pluralModelLabel = 'Услуги'; 
+    protected static ?string $navigationLabel = 'Услуги';
 
     public static function form(Form $form): Form
     {
         return $form
             ->schema([
-                Forms\Components\Tabs::make('Translations')
+                Forms\Components\Tabs::make('Переводы')
                     ->tabs([
                         Forms\Components\Tabs\Tab::make('Russian')
                             ->schema([
@@ -54,17 +57,20 @@ class ServiceResource extends Resource
                     ])
                     ->columnSpanFull(),
 
-                Forms\Components\Section::make('General Information')
+                Forms\Components\Section::make('Общая информация')
                     ->schema([
                         Forms\Components\TextInput::make('monthly_price')
                             ->required()
+                            ->label('Цена за месяц')
                             ->numeric(),
                         Forms\Components\TextInput::make('full_price')
                             ->required()
+                            ->label('Полная стоимость')
                             ->numeric(),
                        
                         Forms\Components\Toggle::make('active')
-                            ->required(),
+                            ->required()
+                            ->label('Активный'),
                     ]),
             ]);
     }
@@ -74,6 +80,7 @@ class ServiceResource extends Resource
         return $table
             ->columns([
                 Tables\Columns\TextColumn::make('title')
+                ->label('Заголовок')
                     ->formatStateUsing(fn ($state) => $state[app()->getLocale()] ?? $state['en'] ?? $state['ru'] ?? '')
                     ->searchable(query: function (Builder $query, string $search): Builder {
                         return $query->where('title->en', 'like', "%{$search}%")
@@ -83,13 +90,17 @@ class ServiceResource extends Resource
                 Tables\Columns\TextColumn::make('monthly_price')
                     ->numeric()
                     ->sortable()
+                    ->label('Цена за месяц')
                     ->money('USD'),
                 Tables\Columns\TextColumn::make('full_price')
                     ->numeric()
                     ->sortable()
+                    ->label('Полная стоимость')
                     ->money('USD'),
                 Tables\Columns\IconColumn::make('active')
-                    ->boolean(),
+                    ->boolean()
+                    ->label('Активный'),
+
                 Tables\Columns\TextColumn::make('created_at')
                     ->dateTime()
                     ->sortable()

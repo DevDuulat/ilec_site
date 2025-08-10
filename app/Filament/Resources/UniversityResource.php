@@ -15,6 +15,9 @@ class UniversityResource extends Resource
     protected static ?string $model = University::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $modelLabel = 'Учебные Заведении'; 
+    protected static ?string $pluralModelLabel = 'Учебные Заведении'; 
+    protected static ?string $navigationLabel = 'Учебные Заведении';
 
     public static function form(Form $form): Form
     {
@@ -65,11 +68,14 @@ class UniversityResource extends Resource
         return $table
             ->columns([
                 Tables\Columns\TextColumn::make('name')
-                    ->searchable(),
+                    ->searchable()
+                    ->label('Название'),
                 Tables\Columns\TextColumn::make('country')
-                    ->searchable(),
+                    ->searchable()
+                    ->label('Страна'),
                 Tables\Columns\TextColumn::make('description')
-                    ->searchable(),
+                    ->searchable()
+                    ->label('Описание'),
                 Tables\Columns\ImageColumn::make('image'),
                 Tables\Columns\TextColumn::make('created_at')
                     ->dateTime()

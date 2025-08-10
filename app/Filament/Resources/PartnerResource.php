@@ -3,35 +3,38 @@
 namespace App\Filament\Resources;
 
 use App\Filament\Resources\PartnerResource\Pages;
-use App\Filament\Resources\PartnerResource\RelationManagers;
 use App\Models\Partner;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\SoftDeletingScope;
 
 class PartnerResource extends Resource
 {
     protected static ?string $model = Partner::class;
-
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $modelLabel = 'Партнёр';
+    protected static ?string $pluralModelLabel = 'Партнёры';
+    protected static ?string $navigationLabel = 'Партнёры';
 
     public static function form(Form $form): Form
     {
-        return $form
-            ->schema([
-                Forms\Components\TextInput::make('title')
-                    ->required()
-                    ->maxLength(255),
-                Forms\Components\TextInput::make('country')
-                    ->required()
-                    ->maxLength(255),
-                Forms\Components\FileUpload::make('image')
-                    ->image(),
-            ]);
+        return $form->schema([
+            Forms\Components\TextInput::make('title')
+                ->label('Название')
+                ->required()
+                ->maxLength(255),
+            Forms\Components\TextInput::make('country')
+                ->label('Страна')
+                ->required()
+                ->maxLength(255),
+            Forms\Components\FileUpload::make('image')
+                ->label('Логотип')
+                ->image()
+                ->directory('partners')
+                ->preserveFilenames(),
+        ]);
     }
 
     public static function table(Table $table): Table
@@ -39,37 +42,33 @@ class PartnerResource extends Resource
         return $table
             ->columns([
                 Tables\Columns\TextColumn::make('title')
-                    ->searchable(),
+                    ->label('Название')
+                    ->searchable()
+                    ->sortable(),
                 Tables\Columns\TextColumn::make('country')
-                    ->searchable(),
-                Tables\Columns\ImageColumn::make('image'),
+                    ->label('Страна')
+                    ->searchable()
+                    ->sortable(),
+                Tables\Columns\ImageColumn::make('image')
+                    ->label('Лого')
+                    ->circular(),
                 Tables\Columns\TextColumn::make('created_at')
+                    ->label('Создан')
                     ->dateTime()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
-                Tables\Columns\TextColumn::make('updated_at')
-                    ->dateTime()
-                    ->sortable()
-                    ->toggleable(isToggledHiddenByDefault: true),
-            ])
-            ->filters([
-                //
             ])
             ->actions([
-                Tables\Actions\EditAction::make(),
+                Tables\Actions\EditAction::make()
+                    ->label(''),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
-                    Tables\Actions\DeleteBulkAction::make(),
+                    Tables\Actions\DeleteBulkAction::make()
+                        ->label('Удалить выбранное'),
                 ]),
-            ]);
-    }
-
-    public static function getRelations(): array
-    {
-        return [
-            //
-        ];
+            ])
+            ->defaultSort('created_at', 'desc');
     }
 
     public static function getPages(): array
