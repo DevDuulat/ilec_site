@@ -22,6 +22,14 @@
   @stack('scripts')
   <script src="{{ asset('js/mobile-menu.js') }}"></script>
   <script src="{{ asset('js/accordion.js') }}"></script>
+  <script>
+  document.querySelectorAll('[data-toggle="modal"]').forEach(button => {
+    button.addEventListener('click', () => {
+      const modal = document.getElementById('applicationModal');
+      modal.classList.remove('hidden');
+    });
+  });
+</script>
 </body>
 
 </html>
