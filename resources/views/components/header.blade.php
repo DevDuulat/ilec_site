@@ -19,7 +19,8 @@ $currentLocale = app()->getLocale();
           </a>
 
           <span class="ml-2 rounded bg-[#5C0B0D] px-2 py-1 text-xs text-white md:inline-block">{{ __('messages.since')
-            }} 2019</span>
+            }}
+            2019</span>
         </div>
 
         <!-- Основная навигация - скрыта на мобилках -->
@@ -65,8 +66,6 @@ $currentLocale = app()->getLocale();
             </div>
           </div>
 
-
-
           <!-- Кнопка заявки - контрастная -->
           <button data-toggle="modal"
             class="rounded-lg bg-white px-5 py-2 font-medium text-[#800F12] hover:bg-gray-100">
@@ -109,11 +108,24 @@ $currentLocale = app()->getLocale();
       <!-- Мобильное меню - контент -->
       <div id="mobile-menu" class="hidden pb-4 md:hidden">
         <div class="flex flex-col space-y-4">
+          <!-- Первый уровень ссылок -->
           <a href="{{ route('about') }}" class="text-gray-200 hover:text-white">{{ __('messages.about') }}</a>
           <a href="{{ route('services') }}" class="text-gray-200 hover:text-white">{{ __('messages.services') }}</a>
           <a href="{{ route('contacts') }}" class="text-gray-200 hover:text-white">{{ __('messages.contacts') }}</a>
+
+          <!-- Добавляем второй уровень сюда -->
+          <a href="{{ route('home') }}" class="text-gray-200 hover:text-white">{{ __('messages.home') }}</a>
+          <a href="{{ route('courses') }}" class="text-gray-200 hover:text-white">{{ __('messages.courses') }}</a>
+          <a href="{{ route('programs.work') }}" class="text-gray-200 hover:text-white">{{ __('messages.germany_jobs')
+            }}</a>
+          <a href="{{ route('programs.study') }}" class="text-gray-200 hover:text-white">{{ __('messages.germany_study')
+            }}</a>
+          <a href="{{ route('reviews') }}" class="text-gray-200 hover:text-white">{{ __('messages.reviews') }}</a>
+          <a href="{{ route('visa.support') }}" class="text-gray-200 hover:text-white">{{ __('messages.visa_support')
+            }}</a>
+
           <button data-toggle="modal"
-            class="w-full rounded-lg bg-white px-5 py-2 font-medium text-[#800F12] hover:bg-gray-100">
+            class="w-full rounded-lg bg-white px-5 py-2 font-medium text-[#800F12] hover:bg-gray-100 hidden md:block">
             {{ __('messages.apply') }}
           </button>
         </div>
@@ -121,8 +133,8 @@ $currentLocale = app()->getLocale();
     </div>
   </div>
 
-  <!-- Второй уровень со светлым фоном -->
-  <div class="bg-white shadow-sm">
+  <!-- Второй уровень со светлым фоном - скрыт на мобилках -->
+  <div class="bg-white shadow-sm hidden md:block">
     <div class="mx-auto max-w-screen-xl px-4 sm:px-6 lg:px-8">
       <nav class="flex space-x-8 overflow-x-auto py-3 scrollbar-hide">
         <a href="{{ route('home') }}" class="whitespace-nowrap px-1 font-medium text-gray-800 hover:text-[#800F12]">
