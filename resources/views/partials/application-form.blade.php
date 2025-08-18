@@ -101,10 +101,8 @@
           flag: this.getFlagEmoji(c.code)
         }));
 
-        // Определяем страну по IP через ip-api.com
-        const resGeo = await fetch('https://ip-api.com/json/');
-        if (!resGeo.ok) throw new Error('Не удалось определить страну по IP');
-        const geo = await resGeo.json();
+      $geo = Http::get('http://ip-api.com/json/' . request()->ip())->json();
+      $countryCode = $geo['countryCode'];
 
         const country = this.countries.find(c => c.code === geo.countryCode);
         if (country) {
