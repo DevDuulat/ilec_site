@@ -13,12 +13,12 @@
         <div class="flex flex-col items-center p-6 hover:bg-gray-50 rounded-lg transition-colors duration-200">
           <div class="w-full h-40 mb-5 flex items-center justify-center">
             <img src="{{ $partner->image ? asset('storage/' . $partner->image) : 'https://placehold.co/300x200' }}"
-              alt="{{ $partner->title }}" class="max-h-full max-w-full object-contain" />
+              alt="{{ $partner->getTranslation('title', $locale) }}" class="max-h-full max-w-full object-contain" />
           </div>
           <h3 class="text-lg font-semibold text-gray-900 text-center">
-            {{ $partner->title }}
+              {{ $partner->getTranslation('title', $locale) }}
           </h3>
-          <p class="text-gray-500 text-sm mt-2">{{ $partner->country }}</p>
+          <p class="text-gray-500 text-sm mt-2">  {{ $partner->getTranslation('country', $locale) }}</p>
         </div>
         @endforeach
       </div>
