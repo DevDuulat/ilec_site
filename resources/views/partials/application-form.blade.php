@@ -102,7 +102,7 @@
         }));
 
         // Определяем страну по IP через ip-api.com
-        const resGeo = await fetch('http://ip-api.com/json/');
+        const resGeo = await fetch('https://ip-api.com/json/');
         if (!resGeo.ok) throw new Error('Не удалось определить страну по IP');
         const geo = await resGeo.json();
 
