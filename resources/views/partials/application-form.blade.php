@@ -42,7 +42,7 @@
                   class="w-full px-4 py-2.5 rounded-lg border border-gray-300 focus:ring-2 focus:ring-[#800F12] focus:border-[#800F12] text-sm" />
               </div>
 
-              <div class="flex" x-data="phoneInputStaticGeo()" x-init="init()">
+              <div class="flex" x-data="phoneInput()" x-init="init()">
                 <div class="relative w-1/3 mr-2">
                   <select x-model="selectedCode" name="phone_code"
                     class="appearance-none w-full px-3 py-2.5 pr-8 rounded-lg border border-gray-300 focus:ring-2 focus:ring-[#800F12] text-sm bg-white">
@@ -84,51 +84,3 @@
     </div>
   </div>
 </section>
-<script>
-  function phoneInputStaticGeo() {
-  return {
-    countries: [],
-    selectedCode: '',
-    phoneNumber: '',
-
-    async init() {
-      try {
-        // Загружаем список стран
-        const resCountries = await fetch('/countries.json');
-        if (!resCountries.ok) throw new Error('Не удалось загрузить countries.json');
-        this.countries = (await resCountries.json()).map(c => ({
-          ...c,
-          flag: this.getFlagEmoji(c.code)
-        }));
-
-        // Определяем страну по IP через ip-api.com
-        const resGeo = await fetch('https://ipapi.co/json/');
-        if (!resGeo.ok) throw new Error('Не удалось определить страну по IP');
-        const geo = await resGeo.json();
-        const country = this.countries.find(c => c.code === geo.country_code);
-        if (country) {
-          this.selectedCode = country.dial_code;
-        }
-
-      } catch (e) {
-        console.warn('Ошибка загрузки стран или определения IP:', e.message);
-      }
-    },
-
-
-    getFlagEmoji(countryCode) {
-      return countryCode
-        .toUpperCase()
-        .replace(/./g, char => String.fromCodePoint(127397 + char.charCodeAt()));
-    },
-
-    onlyDigits() {
-      this.phoneNumber = this.phoneNumber.replace(/\D/g, '');
-    },
-
-    fullPhone() {
-      return this.selectedCode + this.phoneNumber;
-    }
-  }
-}
-</script>

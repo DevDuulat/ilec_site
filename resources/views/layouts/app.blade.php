@@ -61,6 +61,7 @@
   @stack('scripts')
   <script src="{{ asset('js/mobile-menu.js') }}"></script>
   <script src="{{ asset('js/accordion.js') }}"></script>
+  <script src="{{ asset('js/phone-input.js') }}"></script>
   <script>
     document.querySelectorAll('[data-toggle="modal"]').forEach(button => {
     button.addEventListener('click', () => {
@@ -68,54 +69,6 @@
       modal.classList.remove('hidden');
     });
   });
-  </script>
-  <script>
-    function phoneInput() {
-  return {
-    countries: [],
-    selectedCode: '',
-    phoneNumber: '',
-
-    async init() {
-      try {
-        // Загружаем список стран
-        const resCountries = await fetch('/countries.json');
-        if (!resCountries.ok) throw new Error('Не удалось загрузить countries.json');
-        this.countries = (await resCountries.json()).map(c => ({
-          ...c,
-          flag: this.getFlagEmoji(c.code)
-        }));
-
-        // Определяем страну по IP через ip-api.com
-        const resGeo = await fetch('https://ipapi.co/json/');
-        if (!resGeo.ok) throw new Error('Не удалось определить страну по IP');
-        const geo = await resGeo.json();
-
-        const country = this.countries.find(c => c.code === geo.country_code);
-        if (country) {
-          this.selectedCode = country.dial_code;
-        }
-
-      } catch (e) {
-        console.warn('Ошибка загрузки стран или определения IP:', e.message);
-      }
-    },
-
-    getFlagEmoji(countryCode) {
-      return countryCode
-        .toUpperCase()
-        .replace(/./g, char => String.fromCodePoint(127397 + char.charCodeAt()));
-    },
-
-    onlyDigits() {
-      this.phoneNumber = this.phoneNumber.replace(/\D/g, '');
-    },
-
-    fullPhone() {
-      return this.selectedCode + this.phoneNumber;
-    }
-  }
-}
   </script>
 </body>
 
