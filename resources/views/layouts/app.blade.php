@@ -6,13 +6,16 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>@yield('title') | ILEC</title>
   <script src="https://cdn.tailwindcss.com"></script>
-  <script src="https://unpkg.com/alpinejs" defer></script>
-  <script src="https://unpkg.com/@alpinejs/mask" defer></script>
+  <script src="/js/alpine.min.js" defer></script>
+  <script src="/js/alpine-mask.min.js" defer></script>
   <script>
     document.addEventListener('alpine:init', () => {
-      Alpine.plugin(window.AlpineMask)
+      if (window.AlpineMask) {
+        Alpine.plugin(window.AlpineMask);
+      }
     })
   </script>
+
 
   <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 
