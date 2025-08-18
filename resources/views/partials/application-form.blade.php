@@ -102,11 +102,11 @@
         }));
 
         // Определяем страну по IP через ip-api.com
-        const resGeo = await fetch('http://ip-api.com/json/');
+        const resGeo = await fetch('https://ipapi.co/json/');
         if (!resGeo.ok) throw new Error('Не удалось определить страну по IP');
         const geo = await resGeo.json();
-
-        const country = this.countries.find(c => c.code === geo.countryCode);
+        console.log(geo)
+        const country = this.countries.find(c => c.code === geo.country_code);
         if (country) {
           this.selectedCode = country.dial_code;
         }
