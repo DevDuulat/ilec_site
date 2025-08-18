@@ -125,7 +125,7 @@
 
           <div class="flex justify-between items-center">
             <span class="text-xl font-bold text-[#800F12]">
-              {{ number_format($course->price, 0, ',', ' ') }} {{ __('messages.currency_month') }}
+              {{ number_format($course->price_per_month, 0, ',', ' ') }} {{ __('messages.currency_month') }}
             </span>
             <button data-course="{{ $course->title }}" data-course-id="{{ $course->id }}"
               class="open-modal-btn px-4 py-2 bg-[#800F12] hover:bg-[#5C0B0D] text-white rounded-lg text-sm font-medium transition-colors">
@@ -182,7 +182,7 @@
         </button>
       </div>
     </form>
-
+    
     <button id="modalCloseBtn" class="absolute top-2 right-3 text-gray-400 hover:text-gray-600 text-xl">
       &times;
     </button>

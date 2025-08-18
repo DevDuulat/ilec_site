@@ -94,9 +94,24 @@
             class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-[#800F12] focus:border-[#800F12] transition"
             required value="{{ old('email') }}" />
 
-          <input type="tel" name="phone" placeholder="{{ __('messages.contact.form.phone') }}"
-            class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-[#800F12] focus:border-[#800F12] transition"
-            value="{{ old('phone') }}" />
+         <div x-data="phoneInput()" x-init="init()" class="flex">
+
+                  <div class="relative w-1/3 mr-2">
+                    <select x-model="selectedCode" name="phone_code"
+                      class="appearance-none w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-[#800F12] bg-white transition">
+                      <template x-for="country in countries" :key="country.code">
+                        <option :value="country.dial_code" x-text="`${country.flag} ${country.dial_code}`"></option>
+                      </template>
+                    </select>
+                   
+                  </div>
+
+                  <input type="tel" id="phone" name="phone" required x-model="phoneNumber" @input="onlyDigits"
+                    class="flex-1 px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-[#800F12] focus:border-[#800F12] transition"
+                    x-mask="(999) 999-99-99" />
+                  <input type="hidden" name="phone_number" :value="fullPhone()">
+
+                </div>
 
           <textarea name="message" placeholder="{{ __('messages.contact.form.message') }}" rows="4"
             class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-[#800F12] focus:border-[#800F12] transition">{{ old('message') }}</textarea>

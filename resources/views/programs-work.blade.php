@@ -242,7 +242,7 @@
               </div>
 
               <div>
-                <span class="text-gray-500">{{ __('programs.type') }}</span>
+                <span class="text-gray-500">{{ __('programs.salary') }}</span>
                 <div class="font-medium text-gray-800 mt-1">
                   {{ $program->salary_min }}€ – {{ $program->salary_max }}€/мес
                 </div>

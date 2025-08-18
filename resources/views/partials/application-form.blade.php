@@ -42,13 +42,13 @@
                   class="w-full px-4 py-2.5 rounded-lg border border-gray-300 focus:ring-2 focus:ring-[#800F12] focus:border-[#800F12] text-sm" />
               </div>
 
-              <div class="flex">
+              <div class="flex" x-data="phoneInputStaticGeo()" x-init="init()">
                 <div class="relative w-1/3 mr-2">
-                  <select name="phone_code"
+                  <select x-model="selectedCode" name="phone_code"
                     class="appearance-none w-full px-3 py-2.5 pr-8 rounded-lg border border-gray-300 focus:ring-2 focus:ring-[#800F12] text-sm bg-white">
-                    <option value="+7">🇷🇺 +7</option>
-                    <option value="+1">🇺🇸 +1</option>
-                    <option value="+44">🇬🇧 +44</option>
+                    <template x-for="country in countries" :key="country.code">
+                      <option :value="country.dial_code" x-text="country.flag + ' ' + country.dial_code"></option>
+                    </template>
                   </select>
                   <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2">
                     <svg class="h-4 w-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -56,11 +56,16 @@
                     </svg>
                   </div>
                 </div>
-                <input type="tel" name="phone_number" placeholder="{{ __('request_form.fields.phone_number') }}"
-                  required
+
+                <input type="tel" id="phone" name="phone" required x-model="phoneNumber" @input="onlyDigits"
+                  placeholder="{{ __('request_form.fields.phone_number') }}"
                   class="flex-1 px-4 py-2.5 rounded-lg border border-gray-300 focus:ring-2 focus:ring-[#800F12] text-sm"
-                  x-data="{}" x-mask="(999) 999-99-99" />
+                  x-mask="(999) 999-99-99">
+
+                <!-- Это поле отправит полный номер -->
+                <input type="hidden" name="phone_number" :value="fullPhone()">
               </div>
+
 
               <button type="submit"
                 class="w-full bg-[#800F12] hover:bg-[#5C0B0D] text-white py-2.5 px-4 rounded-lg font-medium text-sm transition duration-300">
@@ -79,3 +84,52 @@
     </div>
   </div>
 </section>
+<script>
+  function phoneInputStaticGeo() {
+  return {
+    countries: [],
+    selectedCode: '',
+    phoneNumber: '',
+
+    async init() {
+      try {
+        // Загружаем список стран
+        const resCountries = await fetch('/countries.json');
+        if (!resCountries.ok) throw new Error('Не удалось загрузить countries.json');
+        this.countries = (await resCountries.json()).map(c => ({
+          ...c,
+          flag: this.getFlagEmoji(c.code)
+        }));
+
+        // Определяем страну по IP через ip-api.com
+        const resGeo = await fetch('http://ip-api.com/json/');
+        if (!resGeo.ok) throw new Error('Не удалось определить страну по IP');
+        const geo = await resGeo.json();
+
+        const country = this.countries.find(c => c.code === geo.countryCode);
+        if (country) {
+          this.selectedCode = country.dial_code;
+        }
+
+      } catch (e) {
+        console.warn('Ошибка загрузки стран или определения IP:', e.message);
+      }
+    },
+
+
+    getFlagEmoji(countryCode) {
+      return countryCode
+        .toUpperCase()
+        .replace(/./g, char => String.fromCodePoint(127397 + char.charCodeAt()));
+    },
+
+    onlyDigits() {
+      this.phoneNumber = this.phoneNumber.replace(/\D/g, '');
+    },
+
+    fullPhone() {
+      return this.selectedCode + this.phoneNumber;
+    }
+  }
+}
+</script>

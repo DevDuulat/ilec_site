@@ -143,7 +143,7 @@
     'popular' => 'Популярный',
     'min' => 'минут',
     'group_size' => 'Группа :count чел.',
-    'currency_month' => 'сом/мес',
+    'currency_month' => '€/мес',
     'video_reviews' => [
       'title' => 'Видео отзывы',
       'description' => 'Наши клиенты делятся своими впечатлениями',

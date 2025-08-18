@@ -22,14 +22,8 @@
           </h3>
 
           <div class="mt-6">
-            <form method="POST" action="{{ route('request-forms.store') }}" class="mx-auto max-w-xs">
+            <form method="POST" action="{{ route('request-forms.store') }}" class="">
               @csrf
-
-              @if(session('success'))
-              <div class="mb-4 rounded-md bg-green-100 p-4 text-green-700">
-                {{ session('success') ?: __('messages.apply_modal.success') }}
-              </div>
-              @endif
 
               <div class="mb-4">
                 <label for="name" class="mb-1 block text-left text-sm font-medium text-gray-300">
@@ -41,12 +35,28 @@
               </div>
 
               <div class="mb-4">
-                <label for="phone" class="mb-1 block text-left text-sm font-medium text-gray-300">
-                  {{ __('messages.apply_modal.phone') }}
-                </label>
-                <input type="tel" id="phone" name="phone"
-                  class="block w-full rounded-md border border-gray-600 bg-[#2b2d30] px-3 py-2 text-white shadow-sm focus:border-[#800F12] focus:ring-[#800F12]"
-                  value="{{ old('phone') }}">
+                <div x-data="phoneInput()" x-init="init()" class="flex">
+
+                  <div class="relative w-1/3 mr-2">
+                    <select x-model="selectedCode" name="phone_code"
+                      class="appearance-none w-full px-3 py-2.5 pr-8 rounded-lg border border-gray-600 bg-[#2b2d30] text-white custom-scroll">
+                      <template x-for="country in countries" :key="country.code">
+                        <option :value="country.dial_code" x-text="`${country.flag} ${country.dial_code}`"></option>
+                      </template>
+                    </select>
+                    <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2">
+                      <svg class="h-4 w-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                      </svg>
+                    </div>
+                  </div>
+
+                  <input type="tel" id="phone" name="phone" required x-model="phoneNumber" @input="onlyDigits"
+                    class="flex-1 rounded-md border border-gray-600 bg-[#2b2d30] px-3 py-2 text-white shadow-sm focus:border-[#800F12] focus:ring-[#800F12]"
+                    x-mask="(999) 999-99-99" />
+                  <input type="hidden" name="phone_number" :value="fullPhone()">
+
+                </div>
               </div>
 
               <div class="mb-4">

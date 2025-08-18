@@ -13,7 +13,7 @@ class LanguageController extends Controller
         if (!in_array($locale, ['en', 'ru', 'de'])) {
             abort(400, 'Unsupported language');
         }
-
+        
         Session::put('locale', $locale);
         App::setLocale($locale);
 

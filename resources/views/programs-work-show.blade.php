@@ -217,7 +217,7 @@
         <div class="mt-8 space-y-4">
           <button onclick="document.getElementById('consultation-form').classList.remove('hidden')"
             class="w-full bg-[#800F12] hover:bg-[#6a0e11] text-white py-3 px-4 rounded-lg font-medium transition-colors shadow-md">
-            {{ __('programs.apply') }}
+            {{ __('messages.apply') }}
           </button>
 
           <a href="{{ route('programs.work') }}"

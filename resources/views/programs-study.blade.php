@@ -10,7 +10,8 @@
           {{ __('programs.study_title') }} {{-- Обучение за рубежом | Study Abroad | Studium im Ausland --}}
         </h1>
         <p class="text-lg md:text-xl text-gray-300 mb-8 max-w-lg">
-          {{ __('programs.study_description') }} {{-- Подберите... | Choose educational... | Finden Sie Bildungsprogramme...
+          {{ __('programs.study_description') }} {{-- Подберите... | Choose educational... | Finden Sie
+          Bildungsprogramme...
           --}}
         </p>
 
@@ -210,12 +211,16 @@
               <div>
                 <span class="text-gray-500"> {{ __('programs.type') }}</span>
                 <div class="font-medium text-gray-800 mt-1">
-                  @switch($program->type)
-                  @case('ausbildung') Профессиональное обучение @break
-                  @case('specialist') Для специалистов @break
-                  @case('short') Краткосрочная @break
-                  @case('internship') Стажировка @break
-                  @default {{ $program->type }}
+
+                  @switch($program->type->value)
+                  @case('work')
+                  {{ __('programs.program_types.work') }}
+                  @break
+                  @case('study')
+                  {{ __('programs.program_types.study') }}
+                  @break
+                  @default
+                  {{ $program->type->value }}
                   @endswitch
                 </div>
               </div>
@@ -226,7 +231,7 @@
               </div>
 
               <div>
-                <span class="text-gray-500">{{ __('programs.type') }}</span>
+                <span class="text-gray-500">{{ __('programs.salary') }}</span>
                 <div class="font-medium text-gray-800 mt-1">
                   {{ $program->salary_min }}€ – {{ $program->salary_max }}€/мес
                 </div>

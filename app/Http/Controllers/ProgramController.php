@@ -65,7 +65,6 @@ class ProgramController extends Controller
     }
 
 
-
     public function study(Request $request)
     {
         $query = Program::where('type', 'study');
