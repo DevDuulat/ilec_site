@@ -3,10 +3,11 @@ return [
     // Gemeinsame Phrasen
     'view_all_courses' => 'Sprachkurse anzeigen',
     'all_services' => 'Alle Dienstleistungen',
+    'view_program' => '    Alle Programme',
 
     // Startseite
     'home' => [
-        'title' => 'Auslandsstudium mit Zulassungsgarantie',
+        'title' => 'Arbeit und Ausbildung in Deutschland',
         'description' => 'Vollständige Betreuung von der Programmauswahl bis zum Visum.',
         'image_alt' => 'Studenten im Ausland',
     ],

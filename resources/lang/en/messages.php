@@ -20,6 +20,7 @@
       'universities_description' => 'Our clients study at top universities in their countries, highly ranked around the world.',
       '90_percent_success' => '90% successful deposits',
       '5_years_experience' => '5+ years of experience',
+      '1300_enrolled_students' => '1,300+ enrolled students',
       'apply_modal' => [
         'title' => 'Submit Application',
         'name' => 'Name*',

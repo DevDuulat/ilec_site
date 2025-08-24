@@ -20,6 +20,7 @@ return [
     'universities_description' => 'Unsere Kunden studieren an führenden Universitäten in ihren Ländern mit hohem internationalen Ansehen.',
       '90_percent_success' => '90 % erfolgreiche Einzahlungen',
       '5_years_experience' => '5+ Jahre Erfahrung',
+      '1300_enrolled_students' => 'Über 1300 eingeschriebene Studierende',
     'apply_modal' => [
         'title' => 'Bewerbung einreichen',
         'name' => 'Name*',

@@ -35,4 +35,9 @@ class Service extends Model
             'language_courses' => __('messages.services.categories.language_courses'),
         ][$this->category];
     }
+
+    public function getMonthlyPriceEuroAttribute()
+    {
+        return 'от ' . number_format($this->monthly_price, 0, ',', ' ') . ' €';
+    }
 }

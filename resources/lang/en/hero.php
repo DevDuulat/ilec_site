@@ -3,10 +3,11 @@
     // Common phrases
     'view_all_courses' => 'View language courses',
     'all_services' => 'All services',
+    'view_program' => 'All programs',
 
     // Home page
     'home' => [
-        'title' => 'Study abroad with guaranteed admission',
+        'title' => 'Work and education in Germany',
         'description' => 'Full support from program selection to visa approval.',
         'image_alt' => 'Students abroad',
     ],
