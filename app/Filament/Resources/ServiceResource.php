@@ -64,6 +64,7 @@ class ServiceResource extends Resource
                             ->label('Цена за месяц')
                             ->numeric(),
                         Forms\Components\TextInput::make('full_price')
+                            ->required()
                             ->label('Полная стоимость')
                             ->numeric(),
                        
