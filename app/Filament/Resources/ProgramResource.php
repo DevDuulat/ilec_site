@@ -80,7 +80,14 @@ class ProgramResource extends Resource
     public static function table(Table $table): Table
     {
         return $table->columns([
-            Tables\Columns\TextColumn::make('title.ru')->label('Название')->searchable(),
+            Tables\Columns\TextColumn::make('title')
+                    ->label('Название')
+                    ->formatStateUsing(function ($state) {
+                        if (is_array($state)) {
+                            return $state['ru'] ?? $state['en'] ?? $state['de'] ?? 'Без названия';
+                        }
+                        return $state;
+                    }),
 
             Tables\Columns\TextColumn::make('type')->label('Тип')->sortable()
                 ->formatStateUsing(fn($state) => $state?->label() ?? '-'),

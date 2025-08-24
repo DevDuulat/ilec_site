@@ -79,13 +79,13 @@ class ServiceResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('title')
-                ->label('Заголовок')
-                    ->formatStateUsing(fn ($state) => $state[app()->getLocale()] ?? $state['en'] ?? $state['ru'] ?? '')
-                    ->searchable(query: function (Builder $query, string $search): Builder {
-                        return $query->where('title->en', 'like', "%{$search}%")
-                            ->orWhere('title->ru', 'like', "%{$search}%")
-                            ->orWhere('title->de', 'like', "%{$search}%");
+               Tables\Columns\TextColumn::make('title')
+                    ->label('Название')
+                    ->formatStateUsing(function ($state) {
+                        if (is_array($state)) {
+                            return $state['ru'] ?? $state['en'] ?? $state['de'] ?? 'Без названия';
+                        }
+                        return $state;
                     }),
                 Tables\Columns\TextColumn::make('monthly_price')
                     ->numeric()
