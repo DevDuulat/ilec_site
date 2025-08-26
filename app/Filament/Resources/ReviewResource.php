@@ -43,6 +43,7 @@ class ReviewResource extends Resource
                         ->enableDownload()
                         ->preserveFilenames()
                         ->maxSize(307200)
+                        ->rules(['max:307200'])
                         ->required()
                         ->enableReordering(false)
                         ->columnSpan(1),

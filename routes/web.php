@@ -27,6 +27,14 @@ Route::get('/programs/{program}', [ProgramController::class, 'show'])->name('pro
 Route::get('/courses', [CourseController::class, 'index'])->name('courses');
 Route::get('/visa-support', [HomeController::class, 'indexVisa'])->name('visa.support');
 
+Route::get('/check-upload-limits', function () {
+    dd(
+        ini_get('upload_max_filesize'),
+        ini_get('post_max_size')
+    );
+});
+
+
 });
 
 Route::get('/reviews', [ReviewController::class, 'index'])->name('reviews');
