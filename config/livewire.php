@@ -3,7 +3,7 @@
 return [
 
     'temporary_file_upload' => [
-        'disk' => local, // или 'local', 's3'
+        'disk' => 'local', // или 'local', 's3'
         'rules' => 'file|max:512000', // 500MB
         'directory' => 'livewire-tmp',
         'middleware' => 'throttle:60,1',
