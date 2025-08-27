@@ -61,7 +61,7 @@
                             </div>
                         </div>
 
-                        <div class="mt-auto pt-4"> <!-- Добавлено mt-auto для выравнивания вниз -->
+                        <div class="mt-auto"> <!-- Добавлено mt-auto для выравнивания вниз -->
                             <a href="{{ route('contacts') }}"
                                 class="block w-full bg-[#800F12] hover:bg-[#5C0B0D] text-white px-4 py-3 rounded-lg font-medium text-sm transition duration-300 text-center">
                                 {{ __('messages.services_page.apply_btn') }}
