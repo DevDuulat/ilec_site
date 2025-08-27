@@ -33,7 +33,7 @@ class ReviewResource extends Resource
                         ->label('Превью обложки1')
                         ->required()
                         ->columnSpan(1),
-                FileUpload::make('video_path')
+               FileUpload::make('video_path')
                     ->label('Видео')
                     ->disk('public')
                     ->directory('reviews/videos')
