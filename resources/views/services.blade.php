@@ -26,6 +26,9 @@
                         <p class="text-gray-600 mb-6">
                             {{ $service->getTranslation('description', app()->getLocale()) }}
                         </p>
+                        <div class="service-content">
+                            {!! $service->getTranslation('content', app()->getLocale()) !!}
+                        </div>
                         <div class="mb-6">
                             <p class="text-gray-500 text-sm">{{ __('messages.services_page.price') }}:</p>
                             <div class="flex items-end">
