@@ -29,21 +29,28 @@
                         <div class="service-content text-gray-600 mb-6">
                             {!! $service->getTranslation('content', app()->getLocale()) !!}
                         </div>
-                        <div class="mb-6">
-                            <p class="text-gray-500 text-sm">{{ __('messages.services_page.price') }}:</p>
-                            <div class="flex items-end">
-                                <span class="text-2xl font-bold text-gray-900">
-                                    {{ $service->monthly_price_euro }}
-                                </span>
-                                <span class="text-gray-500 ml-1">{{ __('messages.services_page.per_month') }}</span>
+                        <div class="mb-6 space-y-2">
+                            <!-- Ежемесячная цена -->
+                            <div class="flex items-center justify-between py-2 border-b border-gray-100">
+                                <div>
+                                    <p class="text-gray-500 text-sm">{{ __('messages.services_page.price') }}</p>
+                                </div>
+                                <div class="text-right">
+                                    <span
+                                        class="text-lg font-semibold text-gray-900">{{ $service->monthly_price_euro }}€</span>
+                                    <p class="text-gray-400 text-xs">/месяц</p>
+                                </div>
                             </div>
-                        </div>
-                        <div class="mb-6">
-                            <p class="text-gray-500 text-sm">{{ __('messages.services_page.full_price') }}:</p>
-                            <div class="flex items-end">
-                                <span class="text-2xl font-bold text-gray-900">
-                                    {{ $service->full_price_euro }}
-                                </span>
+
+                            <!-- Полная цена -->
+                            <div class="flex items-center justify-between py-2">
+                                <div>
+                                    <p class="text-gray-500 text-sm">{{ __('messages.services_page.full_price') }}</p>
+                                </div>
+                                <div class="text-right">
+                                    <span
+                                        class="text-lg font-semibold text-gray-900">{{ $service->full_price_euro }}€</span>
+                                </div>
                             </div>
                         </div>
 
