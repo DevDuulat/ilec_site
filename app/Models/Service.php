@@ -40,4 +40,8 @@ class Service extends Model
     {
         return 'от ' . number_format($this->monthly_price, 0, ',', ' ') . ' €';
     }
+    public function getFullPriceEuroAttribute()
+    {
+        return number_format($this->full_price, 0, ',', ' ') . ' €';
+    }
 }

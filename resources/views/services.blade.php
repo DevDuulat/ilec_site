@@ -42,11 +42,11 @@
                             <p class="text-gray-500 text-sm">{{ __('messages.services_page.full_price') }}:</p>
                             <div class="flex items-end">
                                 <span class="text-2xl font-bold text-gray-900">
-                                    {{ $service->full_price }}
+                                    {{ $service->full_price_euro }}
                                 </span>
-                                <span class="text-gray-500 ml-1">{{ __('messages.services_page.currency') }}</span>
                             </div>
                         </div>
+
                         <div class="mt-auto pt-4"> <!-- Добавлено mt-auto для выравнивания вниз -->
                             <a href="{{ route('contacts') }}"
                                 class="block w-full bg-[#800F12] hover:bg-[#5C0B0D] text-white px-4 py-3 rounded-lg font-medium text-sm transition duration-300 text-center">
