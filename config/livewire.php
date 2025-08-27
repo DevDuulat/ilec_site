@@ -4,8 +4,8 @@ return [
 
     'temporary_file_upload' => [
         'disk' => null,
-        'rules' => ['required', 'file', 'max:512000'], // 500 MB
-        'directory' => null, // livewire-tmp
+        'rules' => 'required|file|max:512000', // 500MB
+        'directory' => null,
         'middleware' => null,
         'preview_mimes' => [
             'png', 'gif', 'bmp', 'svg', 'wav', 'mp4',
@@ -14,5 +14,6 @@ return [
         ],
         'max_upload_time' => 5,
     ],
+
 
 ];
