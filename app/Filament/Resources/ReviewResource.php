@@ -30,8 +30,9 @@ class ReviewResource extends Resource
                 ->schema([
                     FileUpload::make('preview_image')
                         ->image()
-                        ->label('Превью обложки1')
+                        ->label('Превью обложки')
                         ->required()
+                        ->acceptedFileTypes(['image/jpeg', 'image/png', 'image/gif', 'image/webp', 'image/svg+xml'])
                         ->columnSpan(1),
                FileUpload::make('video_path')
                     ->label('Видео')
