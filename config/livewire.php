@@ -2,25 +2,17 @@
 
 return [
 
-    /*
-    |--------------------------------------------------------------------------
-    | Temporary File Upload Configuration
-    |--------------------------------------------------------------------------
-    |
-    | Настройки для временных загрузок файлов через Livewire.
-    |
-    */
-
     'temporary_file_upload' => [
-
-        // Максимальный размер одного файла в килобайтах
-        'max_file_size' => 512000, // 500 MB
-
-        // Размер chunk при загрузке (Livewire разбивает файл на части)
-        'chunk_size' => 5120, // 5 MB
-
-        // Временная папка для хранения файлов
-        'directory' => sys_get_temp_dir(),
+        'disk' => null,
+        'rules' => ['required', 'file', 'max:512000'], // 500 MB
+        'directory' => null, // livewire-tmp
+        'middleware' => null,
+        'preview_mimes' => [
+            'png', 'gif', 'bmp', 'svg', 'wav', 'mp4',
+            'mov', 'avi', 'wmv', 'mp3', 'm4a',
+            'jpg', 'jpeg', 'mpga', 'webp', 'wma',
+        ],
+        'max_upload_time' => 5,
     ],
 
 ];
