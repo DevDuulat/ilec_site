@@ -39,7 +39,6 @@ class ReviewResource extends Resource
                     ->directory('reviews/videos')
                     ->acceptedFileTypes(['video/mp4', 'video/webm', 'video/ogg'])
                     ->maxSize(512000) // 500 MB
-                    ->rules(['file' => 'file|max:512000']) // Livewire валидация
                     ->required()
                     ->columnSpan(1),
                 ])
