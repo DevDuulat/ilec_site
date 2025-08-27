@@ -34,6 +34,17 @@ Route::get('/check-upload-limits', function () {
     );
 });
 
+Route::post('/debug-upload', function (\Illuminate\Http\Request $request) {
+    if ($request->hasFile('video_path')) {
+        return [
+            'real_size_bytes' => $request->file('video_path')->getSize(),
+            'real_size_mb' => round($request->file('video_path')->getSize() / 1024 / 1024, 2),
+        ];
+    }
+    return 'Файл не получен';
+});
+
+
 
 });
 
