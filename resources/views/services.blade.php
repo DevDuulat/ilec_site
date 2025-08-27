@@ -19,7 +19,7 @@
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 @foreach ($services as $service)
                     <div
-                        class="rounded-xl bg-white p-6 md:p-8 md:rounded-2xl shadow-sm hover:shadow-md transition-shadow duration-300 border border-gray-100">
+                        class="flex flex-col rounded-xl bg-white p-6 md:p-8 md:rounded-2xl shadow-sm hover:shadow-md transition-shadow duration-300 border border-gray-100 min-h-[400px]">
                         <h3 class="text-xl font-semibold mb-4">
                             {{ $service->getTranslation('title', app()->getLocale()) }}
                         </h3>
@@ -37,11 +37,10 @@
                                 </span>
                                 <span class="text-gray-500 ml-1">{{ __('messages.services_page.per_month') }}</span>
                             </div>
-
                         </div>
-                        <div class="flex space-x-3">
+                        <div class="mt-auto pt-4"> <!-- Добавлено mt-auto для выравнивания вниз -->
                             <a href="{{ route('contacts') }}"
-                                class="inline-block bg-[#800F12] hover:bg-[#5C0B0D] text-white px-4 py-2 rounded-lg font-medium text-sm flex-1 transition duration-300 text-center">
+                                class="block w-full bg-[#800F12] hover:bg-[#5C0B0D] text-white px-4 py-3 rounded-lg font-medium text-sm transition duration-300 text-center">
                                 {{ __('messages.services_page.apply_btn') }}
                             </a>
                         </div>
