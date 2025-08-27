@@ -26,7 +26,7 @@
                         <p class="text-gray-600 mb-6">
                             {{ $service->getTranslation('description', app()->getLocale()) }}
                         </p>
-                        <div class="service-content">
+                        <div class="service-content mb-6">
                             {!! $service->getTranslation('content', app()->getLocale()) !!}
                         </div>
                         <div class="mb-6">
