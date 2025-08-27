@@ -31,4 +31,11 @@ return [
         'region' => env('AWS_DEFAULT_REGION', 'us-east-1'),
     ],
 
+    'amocrm' => [
+        'base_url' => env('AMOCRM_BASE_URL'),
+        'client_id' => env('AMOCRM_CLIENT_ID'),
+        'client_secret' => env('AMOCRM_CLIENT_SECRET'),
+        'access_token' => env('AMOCRM_ACCESS_TOKEN'),
+        'redirect_uri' => env('AMOCRM_REDIRECT_URI'),
+    ],
 ];

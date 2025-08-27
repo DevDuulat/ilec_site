@@ -27,24 +27,6 @@ Route::get('/programs/{program}', [ProgramController::class, 'show'])->name('pro
 Route::get('/courses', [CourseController::class, 'index'])->name('courses');
 Route::get('/visa-support', [HomeController::class, 'indexVisa'])->name('visa.support');
 
-Route::get('/check-upload-limits', function () {
-    dd(
-        ini_get('upload_max_filesize'),
-        ini_get('post_max_size')
-    );
-});
-
-Route::post('/debug-upload', function (\Illuminate\Http\Request $request) {
-    if ($request->hasFile('video_path')) {
-        return [
-            'real_size_bytes' => $request->file('video_path')->getSize(),
-            'real_size_mb' => round($request->file('video_path')->getSize() / 1024 / 1024, 2),
-        ];
-    }
-    return 'Файл не получен';
-});
-
-
 
 });
 
