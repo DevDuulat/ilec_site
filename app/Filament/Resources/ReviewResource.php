@@ -30,21 +30,18 @@ class ReviewResource extends Resource
                 ->schema([
                     FileUpload::make('preview_image')
                         ->image()
-                        ->label('Превью обложки')
+                        ->label('Превью обложки1')
                         ->required()
                         ->columnSpan(1),
-
-                    FileUpload::make('video_path')
-                        ->label('Видео')
-                        ->disk('public')
-                        ->directory('reviews/videos')
-                        ->acceptedFileTypes(['video/mp4', 'video/webm', 'video/ogg'])
-                        ->enableOpen()
-                        ->enableDownload()
-                        ->preserveFilenames()
-                        ->required()
-                        ->enableReordering(false)
-                        ->columnSpan(1),
+                FileUpload::make('video_path')
+                    ->label('Видео')
+                    ->disk('public')
+                    ->directory('reviews/videos')
+                    ->acceptedFileTypes(['video/mp4', 'video/webm', 'video/ogg'])
+                    ->maxSize(512000) // 500 MB
+                    ->rules(['file' => 'file|max:512000']) // Livewire валидация
+                    ->required()
+                    ->columnSpan(1),
                 ])
                 ->columns(2)
                 ]);
